@@ -6,7 +6,7 @@ These playbooks utilize the <b>eos_config</b> and <b>eos_command</b> modules and
 ---
 IMPORTANT NOTE
 
-Unless you are running Ansible 2.4.2 or a devel branch containing the fix for:
+Unless you are running Ansible 2.4.2+ or a devel branch containing the fix for:
 
 https://github.com/ansible/ansible/issues/30802
 
