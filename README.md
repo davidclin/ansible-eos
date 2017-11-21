@@ -1,17 +1,18 @@
 # ansible-eos
 These are sample playbooks for Arista EOS using eapi transport and common tasks that are useful to invoke show/config commands.
 
-These playbooks utilize the eos_config and eos_command modules and a provider file for authentication.
+These playbooks utilize the <b>eos_config</b> and <b>eos_command</b> modules and a provider file for authentication.
 
 ---
 IMPORTANT NOTE
 
-At the time of this writing, these playbooks will only work if 'enable secret' is disabled on target Arista EOS switches. 
+Unless you are running Ansible 2.4.2 or a devel branch containing the fix for:
 
-Fix will be available in Ansible 2.4.2 release based on
 https://github.com/ansible/ansible/issues/30802
 
-Workaround is to disable 'enable secret' on all target Arista EOS switches or use Ansible devel branch that contains the fix.
+these playbooks will NOT work if 'enable secret' is configured on target Arista EOS switches. 
+
+Workarounds are to (1) disable 'enable secret' on all target Arista EOS switches or (2) use Ansible devel branch that contains the fix.
 
 Example output you may encounter:
 
