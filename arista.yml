@@ -1,0 +1,42 @@
+---
+- hosts: arista 
+  gather_facts: false
+  connection: local
+
+  tasks:
+
+  - name: run show version on remote arista devices
+    eos_command:
+        commands: show version
+        provider: '{{ eos_connection }}'
+
+  - name: load acl named 'test' on remote arista devices
+    eos_config:
+        lines:
+          - 10 permit ip 1.1.1.1/32 any log
+          - 20 permit ip 2.2.2.2/32 any log
+          - 30 permit ip 3.3.3.3/32 any log
+        parents: ip access-list test
+        before: no ip access-list test
+        replace: block
+        provider: '{{ eos_connection }}'
+
+  - name: verify via 'show ip access-lists test'
+    eos_command:
+        commands: show ip access-lists test
+        provider: '{{ eos_connection }}'
+
+  - name: save running-config to startup-config
+    eos_config:
+        save_when: modified
+        provider: '{{ eos_connection }}'
+
+
+# To enable networking debug
+# 1. Enable 'log_path=/var/log/ansible.log' in ansible.cfg file
+# 2. Specify the location for the log file
+#    export ANSIBLE_LOG_PATH=~/ansible.log
+# 3. Enable Debug
+#    export ANSIBLE_DEBUG=True
+# 4. Run with 4*v for connection level verbosity
+#    ansible-playbook -vvvv ...
