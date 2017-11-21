@@ -15,16 +15,18 @@ Workaround is to disable 'enable secret' on all target Arista EOS switches or us
 
 Example output you may encounter:
 
+"permission to run command denied"
+
 <pre>
 [root@localhost ansible]# ansible-playbook arista.yml
 
 PLAY [arista] ******************************************************************
 
 TASK [run show version on remote arista devices] *******************************
-fatal: [10.x.x.x]: FAILED! => {"changed": false, "code": 1005, "failed": true, "msg": "CLI command 1 of 2 'enable' failed: <font color=red> permission to run command denied"<font color=red>} to retry, use: --limit @/etc/ansible/arista.retry
+fatal: [10.1.1.1]: FAILED! => {"changed": false, "code": 1005, "failed": true, "msg": "CLI command 1 of 2 'enable' failed: permission to run command denied" to retry, use: --limit @/etc/ansible/arista.retry
 
 PLAY RECAP *********************************************************************
-172.16.100.238             : ok=0    changed=0    unreachable=0    failed=1
+10.1.1.1             : ok=0    changed=0    unreachable=0    failed=1
 
 </pre>
 
