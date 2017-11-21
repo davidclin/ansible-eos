@@ -1,10 +1,11 @@
 # ansible-eos
 These are sample playbooks for Arista EOS using eapi transport and common tasks that are useful to invoke show/config commands.
 
-These playbooks utilize the eos_config and eos_command modules and provider file for authentication.
+These playbooks utilize the eos_config and eos_command modules and a provider file for authentication.
 
-Example provider used for these playbooks are:
+IMPORTANT NOTE: At the time of this writing, these playbooks will only work if there is NO enable password configured on target Arista EOS switches. This has been fixed and will be available in the Ansible 2.4 release.
 
+Example provider file
 <pre>
 # /etc/ansible/group_vars/all.yaml
 eos_connection:
